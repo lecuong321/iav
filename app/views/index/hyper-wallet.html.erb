@@ -1,0 +1,58 @@
+<% if @transferMethods.present? %>
+<div class="container">
+  <h2>Hyper Wallet Transfer Methods</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>type</th>
+        <th>transferMethodCountry</th>
+        <th>transferMethodCurrency</th>
+        <th>bankId</th>
+        <th>branchId</th>
+        <th>bankAccountId</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @transferMethods.each do |transferMethod| %>
+              <tr>
+                <td><%= transferMethod.type %></td>
+                <td><%= transferMethod.transferMethodCountry %></td>
+                <td><%= transferMethod.transferMethodCurrency %></td>
+                <td><%= transferMethod.bankId %></td>
+                <td><%= transferMethod.branchId %></td>
+                <td><%= transferMethod.bankAccountId %></td>
+              </tr>
+        <% end %>
+    </tbody>
+  </table>
+
+  <h2>Hyper Wallet Payments</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>amount</th>
+        <th>currency</th>
+        <th>description</th>
+        <th>memo</th>
+        <th>purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @payments.each do |payment| %>
+              <tr>
+                <td><%= payment.amount %></td>
+                <td><%= payment.currency %></td>
+                <td><%= payment.description %></td>
+                <td><%= payment.memo %></td>
+                <td><%= payment.purpose %></td>
+              </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <div>
+    <div class="text-right col-sm-12">
+        <a href="<%= root_url %>accounts" class="text-right"> <button class="btn btn-primary">Back</button> </a>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yodlee Sample app</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="/assets/lib/codemirror.css">
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">Yodlee | API</span>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav head-menu">
+        <% if cobSessionToken %>
+          <li><span class="token"><%= cobSessionToken %></span> <%= link_to "Log out", '/logout' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+  <% if cobSessionToken && session[:register].present? %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <% if userSessionToken %>
+        <span class="token"><%= userSessionToken %></span>
+        <%= link_to "Reset", '/reset' %>
+      <% else %>
+        <form action="/login" method="post" class="form-inline">
+          <input type='hidden' name="function" value="login" />
+          <input type='hidden' name="cobSessionToken" value="<%= cobSessionToken %>" />
+          <input name="login" class="form-control" value="sbMemhoandinhant1" />
+          <input name="password" type="password" class="form-control" value="sbMemhoandinhant1#123" />
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <%= yield %>
+
+</div>
+<script>
+    jQuery(document).ready(function($) {
+            var code_type = '';
+            $('.code-html').each(function(index) {
+                $(this).attr('id', 'code-' + index);
+                var editor = CodeMirror.fromTextArea(document.getElementById('code-' + index), {
+                  mode: "application/ld+json",
+                  lineWrapping: true,
+                  lineNumbers: true,
+                  readOnly: true
+
+                    }
+                );
+                editor.autoFormatRange({line: 0, ch: 0}, {line: editor.lineCount() - 1});
+            });
+        });
+  </script>
+</body>
+</html>

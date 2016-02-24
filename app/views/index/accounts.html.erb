@@ -1,0 +1,43 @@
+<% if @banks.present? %>
+<div class="container">
+  <h2>Bank Accounts</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>accountName</th>
+        <th>accountStatus</th>
+        <th>providerName</th>
+        <th>balance</th>
+        <th>availableBalance</th>
+        <th>currentBalance</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @banks['account'].each do |account| %>
+              <tr>
+                <td><%= account['accountName'] %></td>
+                <td><%= account['accountStatus'] %></td>
+                <td><%= account['providerName'] %></td>
+                <td><%= account['balance']['amount'] %></td>
+                <td><% if account['availableBalance'].present? %>
+                <%= account['availableBalance']['amount'] %>
+                <% else %>
+                    0
+                <% end %></td>
+                <td><% if account['currentBalance'].present? %>
+                <%= account['currentBalance']['amount'] %>
+                <% else %>
+                    0
+                <% end %></td>
+              </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <div>
+    <div class="text-right col-sm-12">
+        <a href="<%= root_url %>" class="text-right back"> <button class="btn btn-success">Back</button> </a>
+        <a href="<%= root_url %>hyper-wallet" class="text-right next"> <button class="btn btn-primary next">Next</button> </a>
+    </div>
+  </div>
+</div>
+<% end %>

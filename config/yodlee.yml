@@ -1,0 +1,35 @@
+#====================================================#
+# Core Services
+#====================================================#
+
+coblogin:
+  endpoint: '/authenticate/coblogin'
+  method: 'POST'
+  params:
+    cobrandLogin:
+    cobrandPassword:
+      type: 'password'
+
+login:
+  endpoint: '/authenticate/login'
+  method: 'POST'
+  params:
+    cobSessionToken:
+    login:
+    password:
+      type: 'password'
+
+getFastLinkToken:
+  endpoint: '/authenticator/token'
+  method: 'POST'
+  params:
+    cobSessionToken:
+    rsession:
+    finAppId:
+
+getAccounts:
+  endpoint: '/v1/accounts'
+  method: 'GET'
+  params:
+    cobSessionToken:
+    userSessionToken:

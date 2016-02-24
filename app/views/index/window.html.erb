@@ -1,0 +1,14 @@
+<html>
+<body>
+<div class="container">
+    <strong>Processing...</strong>
+    <form action='<%= @url %>' method='post' id='rsessionPost'>
+        <input type='hidden' name='rsession' placeholder='User Token' value='<%= @userToken %>' id='rsession'/>
+        <input type='hidden' name='app' placeholder='FinappId' value='<%= @finAppId %>' id='finappId'/>
+        <input type='hidden' name='redirectReq' placeholder='true/false' value='true'/>
+        <input type='hidden' name='token' placeholder='Fast Link Token' value='<%= @fastLinkToken %>' id='token'/>
+        <input type='hidden' name='extraParams' placeholer='Extra Params' value='' id='extraParams'/>
+    </form>
+    <script>document.getElementById('rsessionPost').submit();</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<% if !cobSessionToken.nil?  && !userSessionToken.nil? %>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% form.each do |_form| %>
+          <%= form_tag do %>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="<%=_form['class']%>">
+                <h4><b><%= _form[:function] %></b></h4>
+                <input type="hidden" name="action" value="post">
+                <% _form['params'].each do |key, value| %>
+                <div class="form-group <%= key %>">
+                  <label><%= key %> <% if value.nil? || (value && value['required'] != false) %>*<% end %></label>
+                  <% if value && value['example'] %>
+                  <input class="form-control" type="<%= value['type'] %>" name="<%= key %>" placeholder="<%= value['example'] %>" value="<%= value['example'] %>">
+                  <% else %>
+                  <input class="form-control" name="<%= key %>" placeholder="<%= value %>" value="<%= value %>" <% if _form['disabled'] %> disabled <% end %> >
+                  <% end %>
+                </div>
+                <% end %>
+                <div class="form-group">
+                  <% flash.each do |name, msg| %>
+                  <p><font color="red"><%= content_tag :div, msg, :id => "flash_#{name}" %></font></p>
+                  <% end %>
+                </div>
+                <button type="submit" class="btn btn-default" name="submit" <% if _form['disabled'] %> disabled <% end %>>Send Data</button>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel-group" id="#accordion">
+      <% logs.each do |log| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <button type="button" class="btn btn-info btn-block"  data-toggle="collapse" data-target="#panel<%=log[:index]%>"><%= log[:endpoint] %></button>
+            </h4>
+          </div>
+          <div class="panel<%=log[:index]%>" class="collapse">
+            <div class="panel-body collapse in" id = "panel<%=log[:index]%>" >
+              <textarea id="code" class = "code-html" name="code"><%= log[:response] %>
+              </textarea>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

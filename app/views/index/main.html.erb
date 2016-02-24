@@ -1,0 +1,24 @@
+<% if session[:userSessionToken] %>
+<div class="container">
+    <div>
+        <h1>IAV</h1>
+    </div>
+
+    <div class="row">
+
+            <div class="col-sm-12">
+                <iframe src="<%= root_url %>window" height="600" style="width: 100%"></iframe>
+            </div>
+            <div>
+                <div class="text-right col-sm-12">
+                    <a href="<%= root_url %>accounts" class="text-right"> <button class="btn btn-primary">Next</button> </a>
+                </div>
+                <% if session[:emptyBank].present? && session[:emptyBank] %>
+                <div class="text-right col-sm-12">
+                    <span style="color:red"> Please insert bank! </span>
+                </div>
+                <% end %>
+            </div>
+    </div>
+</div>
+<% end %>

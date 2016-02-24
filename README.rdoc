@@ -1,0 +1,18 @@
+== README
+
+Setup
+-----
+Update gem file if in Windows environment
+`bundle install`
+
+
+Config
+------
+`config/yodlee.yml`
+
+sbCobjswatton_yodlee
+e8ff34bf-a53c-4a19-a83a-3c6b507eb21d
+https://rest.developer.yodlee.com/services/srest/restserver/v1.0
+
+sbMemjswatton_yodlee1
+sbMemjswatton_yodlee1#123
